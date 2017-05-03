@@ -16,3 +16,6 @@ This is how a binary would look without any RTTI obfuscation:
 
 Now when ran through the obfuscator, it will turn into this:
 ![](https://i.imgur.com/02MnMbm.png)
+
+### Download
+Get the latest binary from https://github.com/koemeet/rtti-obfuscator/releases.
