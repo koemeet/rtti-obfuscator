@@ -6,13 +6,14 @@
 #include <random>
 #include <time.h>
 #include <cstdlib>
+#include <unordered_set>
 
 #include <boost/regex.hpp>
 #include <boost/filesystem.hpp>
 
 using namespace std;
 
-std::vector<std::string> usedTypeNames;
+std::unordered_set<std::string> usedTypeNames;
 
 std::string getRandomString(const int len) {
 	static const char alpha[] =
@@ -80,9 +81,18 @@ int main(int argc, char* argv[])
 			auto prefix = m[1].str();
 			auto typeName = m[2].str();
 
-			reverse(typeName.begin(), typeName.end());
+			// generate the new type name for the current rtti entry
+			auto newTypeName = getRandomString(typeName.size());
 
-			return "." + prefix + getRandomString(typeName.size()) + "@@";
+			// get a new random name untill we have one we never used before
+			while (usedTypeNames.find(newTypeName) != usedTypeNames.end())
+			{
+				newTypeName = getRandomString(typeName.size());
+			}
+
+			usedTypeNames.emplace(newTypeName);
+
+			return "." + prefix + newTypeName + "@@";
 		});
 
 		// generate output path
