@@ -8,3 +8,11 @@ It can also be used on the command line by simply providing the path to the inpu
 ```
 $ rtti-obfuscator <path-to-binary>
 ```
+
+### Preview
+
+This is how a binary would look without any RTTI obfuscation:
+![](https://i.imgur.com/GDWNMNY.png)
+
+Now when ran through the obfuscator, it will turn into this:
+![](https://i.imgur.com/02MnMbm.png)
