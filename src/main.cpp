@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
 
 		// generate output path
 		boost::filesystem::path p(path);
-		auto outputPath = p.parent_path().string() + "\\" + p.stem().string() + ".tan" + p.extension().string();
+		auto outputPath = p.parent_path().string() + "\\" + p.stem().string() + p.extension().string();
 
 		// write to file
 		std::ofstream os(outputPath, std::ofstream::trunc | std::ofstream::binary);

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -87,18 +87,18 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\boost.1.64.0.0\build\native\boost.targets" Condition="Exists('packages\boost.1.64.0.0\build\native\boost.targets')" />
-    <Import Project="packages\boost_regex-vc140.1.64.0.0\build\native\boost_regex-vc140.targets" Condition="Exists('packages\boost_regex-vc140.1.64.0.0\build\native\boost_regex-vc140.targets')" />
-    <Import Project="packages\boost_filesystem-vc140.1.64.0.0\build\native\boost_filesystem-vc140.targets" Condition="Exists('packages\boost_filesystem-vc140.1.64.0.0\build\native\boost_filesystem-vc140.targets')" />
-    <Import Project="packages\boost_system-vc140.1.64.0.0\build\native\boost_system-vc140.targets" Condition="Exists('packages\boost_system-vc140.1.64.0.0\build\native\boost_system-vc140.targets')" />
+    <Import Project="packages\boost.1.65.1.0\build\native\boost.targets" Condition="Exists('packages\boost.1.65.1.0\build\native\boost.targets')" />
+    <Import Project="packages\boost_regex-vc141.1.65.1.0\build\native\boost_regex-vc141.targets" Condition="Exists('packages\boost_regex-vc141.1.65.1.0\build\native\boost_regex-vc141.targets')" />
+    <Import Project="packages\boost_filesystem-vc141.1.65.1.0\build\native\boost_filesystem-vc141.targets" Condition="Exists('packages\boost_filesystem-vc141.1.65.1.0\build\native\boost_filesystem-vc141.targets')" />
+    <Import Project="packages\boost_system-vc141.1.65.1.0\build\native\boost_system-vc141.targets" Condition="Exists('packages\boost_system-vc141.1.65.1.0\build\native\boost_system-vc141.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\boost.1.64.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.64.0.0\build\native\boost.targets'))" />
-    <Error Condition="!Exists('packages\boost_regex-vc140.1.64.0.0\build\native\boost_regex-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_regex-vc140.1.64.0.0\build\native\boost_regex-vc140.targets'))" />
-    <Error Condition="!Exists('packages\boost_filesystem-vc140.1.64.0.0\build\native\boost_filesystem-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_filesystem-vc140.1.64.0.0\build\native\boost_filesystem-vc140.targets'))" />
-    <Error Condition="!Exists('packages\boost_system-vc140.1.64.0.0\build\native\boost_system-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_system-vc140.1.64.0.0\build\native\boost_system-vc140.targets'))" />
+    <Error Condition="!Exists('packages\boost.1.65.1.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost.1.65.1.0\build\native\boost.targets'))" />
+    <Error Condition="!Exists('packages\boost_regex-vc141.1.65.1.0\build\native\boost_regex-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_regex-vc141.1.65.1.0\build\native\boost_regex-vc141.targets'))" />
+    <Error Condition="!Exists('packages\boost_filesystem-vc141.1.65.1.0\build\native\boost_filesystem-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_filesystem-vc141.1.65.1.0\build\native\boost_filesystem-vc141.targets'))" />
+    <Error Condition="!Exists('packages\boost_system-vc141.1.65.1.0\build\native\boost_system-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\boost_system-vc141.1.65.1.0\build\native\boost_system-vc141.targets'))" />
   </Target>
 </Project>
