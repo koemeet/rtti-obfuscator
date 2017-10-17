@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 		ss << fs.rdbuf();
 		auto contents = ss.str();
 
-		boost::regex reg("\\.(\\?AV|PEAV)(.+?)@@");
+		boost::regex reg(R"(\.(\?AV|PEAV)(.+?)@@\0)");
 
 		// replace RTTI types
 		contents = boost::regex_replace(contents, reg, [](const boost::smatch& m)
@@ -81,18 +81,16 @@ int main(int argc, char* argv[])
 			auto prefix = m[1].str();
 			auto typeName = m[2].str();
 
-			// generate the new type name for the current rtti entry
-			auto newTypeName = getRandomString(typeName.size());
-
 			// get a new random name untill we have one we never used before
-			while (usedTypeNames.find(newTypeName) != usedTypeNames.end())
+			std::string newTypeName;
+			do
 			{
 				newTypeName = getRandomString(typeName.size());
-			}
+			} while (usedTypeNames.find(newTypeName) != usedTypeNames.end());
 
 			usedTypeNames.emplace(newTypeName);
 
-			return "." + prefix + newTypeName + "@@";
+			return "." + prefix + newTypeName + "@@" + '\0';
 		});
 
 		// generate output path
