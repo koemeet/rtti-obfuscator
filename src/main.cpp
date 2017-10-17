@@ -81,11 +81,21 @@ int main(int argc, char* argv[])
 			auto prefix = m[1].str();
 			auto typeName = m[2].str();
 
+			auto length = 1 + prefix.size() + typeName.size() + 2;
+
+			// max length of the new type name
+			auto maxNewLength = 4;
+
 			// get a new random name untill we have one we never used before
 			std::string newTypeName;
 			do
 			{
-				newTypeName = getRandomString(1 + prefix.size() + typeName.size() + 2);
+				newTypeName = getRandomString(length);
+				if (newTypeName.size() > maxNewLength)
+				{
+					memset(const_cast<char*>(newTypeName.data()) + maxNewLength - 1, 0, length - maxNewLength);
+				}
+
 			} while (usedTypeNames.find(newTypeName) != usedTypeNames.end());
 
 			usedTypeNames.emplace(newTypeName);
