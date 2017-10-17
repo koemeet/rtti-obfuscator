@@ -16,29 +16,12 @@ using namespace std;
 std::unordered_set<std::string> usedTypeNames;
 
 std::string getRandomString(const int len) {
-	static const char alpha[] =
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-		"abcdefghijklmnopqrstuvwxyz";
-
-	static const char alphanum[] =
-		"0123456789"
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-		"abcdefghijklmnopqrstuvwxyz";
-
 	string s;
 	s.resize(len);
 
 	for (auto i = 0; i < len; ++i) {
-		// we always want to start types with an alphabetical letter
-		if (0 == i)
-		{
-			s[i] = alpha[rand() % (sizeof(alpha) - 1)];
-
-		}
-		else
-		{
-			s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];	
-		}
+		// just pick a random byte
+		s[i] = rand() % 0xff;
 	}
 
 	s[len] = 0;
@@ -76,7 +59,7 @@ int main(int argc, char* argv[])
 		boost::regex reg(R"(\.(\?AV|PEAV)(.+?)@@\0)");
 
 		// replace RTTI types
-		contents = boost::regex_replace(contents, reg, [](const boost::smatch& m)
+		contents = boost::regex_replace(contents, reg, [&](const boost::smatch& m)
 		{
 			auto prefix = m[1].str();
 			auto typeName = m[2].str();
@@ -84,7 +67,7 @@ int main(int argc, char* argv[])
 			auto length = 1 + prefix.size() + typeName.size() + 2;
 
 			// max length of the new type name
-			auto maxNewLength = 4;
+			auto maxNewLength = 3;
 
 			// get a new random name untill we have one we never used before
 			std::string newTypeName;
@@ -93,7 +76,7 @@ int main(int argc, char* argv[])
 				newTypeName = getRandomString(length);
 				if (newTypeName.size() > maxNewLength)
 				{
-					memset(const_cast<char*>(newTypeName.data()) + maxNewLength - 1, 0, length - maxNewLength);
+					memset(const_cast<char*>(newTypeName.data()) + maxNewLength, 0, length - maxNewLength);
 				}
 
 			} while (usedTypeNames.find(newTypeName) != usedTypeNames.end());
