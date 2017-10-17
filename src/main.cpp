@@ -85,12 +85,12 @@ int main(int argc, char* argv[])
 			std::string newTypeName;
 			do
 			{
-				newTypeName = getRandomString(typeName.size());
+				newTypeName = getRandomString(1 + prefix.size() + typeName.size() + 2);
 			} while (usedTypeNames.find(newTypeName) != usedTypeNames.end());
 
 			usedTypeNames.emplace(newTypeName);
 
-			return "." + prefix + newTypeName + "@@" + '\0';
+			return newTypeName + '\0';
 		});
 
 		// generate output path
